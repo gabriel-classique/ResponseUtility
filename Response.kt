@@ -9,6 +9,17 @@ sealed interface Response<out D, out E: RootError> {
 
 /*-----------------------------------------------------------------------------------------------------*/
 
+//Single Error Interface
+sealed interface Error{
+    data class Connection(val message: String): Error
+    data object Authentication: Error
+    data object NotFound: Error
+    data object InvalidCredentials: Error
+    data object UserAlreadyExists: Error
+}
+
+
+// OR Seperated Error Enums
 sealed interface Error
 
 enum class ApiError: Error {
